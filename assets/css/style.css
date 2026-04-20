@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --bg-dark: #0f0f0f;
+  --bg-luminous: #1a1a1a;
+  --bg-card: #1e1e1e;
+  --accent-gold: #D4AF37;
+  --accent-rose: #B76E79;
+  --glow-gold: rgba(212, 175, 55, 0.15);
+  --text-main: #ffffff;
+  --text-muted: #e0e0e0;
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 10px rgba(0,0,0,0.3);
+  --shadow-lg: 0 15px 35px rgba(0,0,0,0.5);
+
+  /* Geometry */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --sidebar-width: 260px;
+  --transition: all 0.4s cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(to bottom, #121212 0%, #080808 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.luminous-section {
+    background: radial-gradient(circle at top center, #1a1a1a 0%, #0f0f0f 100%);
+}
+
+.glow-header {
+    position: relative;
+    display: inline-block;
+}
+
+.glow-header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--glow-gold) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Base Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-weight: 600;
+}
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: var(--transition);
+}
+a:hover {
+  filter: brightness(1.2);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Layout */
+.dashboard-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  padding: 2rem 1rem;
+}
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.sidebar-header h2 {
+  color: var(--accent-gold);
+  letter-spacing: 1px;
+}
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.nav-item {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.nav-link {
+  display: block;
+  padding: 0.8rem 1.2rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: var(--transition);
+}
+.nav-link:hover, .nav-link.active {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent-gold);
+  transform: translateX(5px);
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem 3rem;
+  background: radial-gradient(circle at top right, rgba(212,175,55,0.05), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(183,110,121,0.05), transparent 40%);
+  min-height: 100vh;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  background: var(--glass-bg);
+  padding: 1rem 2rem;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Utilities */
+.text-gold { color: var(--accent-gold); }
+.text-rose { color: var(--accent-rose); }
+.btn-gold {
+  background: linear-gradient(45deg, var(--accent-gold), #FFF2CD);
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: #ffffff !important;
+  border: 1px solid var(--accent-gold);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: #cccccc !important;
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+/* Auth Pages (Login/Signup override overrides bootstrap) */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 3rem 1.5rem; /* Ensures clickable gutter on mobile */
+  cursor: pointer;
+  background: linear-gradient(to bottom, #121212 0%, #080808 100%);
+}
+.auth-form {
+  cursor: default;
+  width: 100%;
+  max-width: 500px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 4.5rem 3rem; /* Further increased padding */
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+}
+.auth-form .mb-4 {
+  margin-bottom: 3.5rem !important; /* Larger gap for form groups */
+}
+.auth-form .form-label {
+  margin-bottom: 1.2rem; /* Increased gap between label and input */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: block;
+}
+.auth-form .form-control {
+  padding: 1rem 1.4rem; /* More generous internal padding */
+  margin-bottom: 2.5rem; /* Large gap between fields */
+}
+.auth-form .form-label {
+  color: var(--text-main);
+  font-weight: 500;
+}
+.auth-form .form-control {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+}
+.auth-form .form-control:focus {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+  color: var(--text-main);
+}
+::placeholder {
+  color: #eeeeee !important;
+  opacity: 1; /* override firefox default opacity */
+}
+.text-muted {
+  color: #eeeeee !important;
+}
